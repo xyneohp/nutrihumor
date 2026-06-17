@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  /* ---- Paleta: "terra e folha", acolhedora, evita clichê verde-pastel ---- */
+  --color-cream: #fbf7f0;
+  --color-ink: #1f2a1c;
+  --color-leaf: #3d6b4f;
+  --color-leaf-light: #5a8a6c;
+  --color-terracotta: #d97757;
+  --color-sand: #e8dcc8;
+  --color-olive: #7a8b6f;
+  --color-success: #3d6b4f;
+  --color-warning: #c08a3e;
+  --color-alert: #c1573f;
+
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Foco de teclado visível em todos os elementos interativos */
+:focus-visible {
+  outline: 2px solid var(--color-leaf);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Scrollbar discreta, alinhada à paleta */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--color-sand); border-radius: 8px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-olive); }
