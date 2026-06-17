@@ -1,0 +1,39 @@
+name: Deploy NutriHumor no GitHub Pages
+
+on:
+  # Permite que você dispare o deploy manualmente (Run workflow)
+  workflow_dispatch:
+  
+  # Dispara automaticamente sempre que você fizer um 'git push' na branch main
+  push:
+    branches: ["main"]
+
+# Define as permissões necessárias para o GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      - name: Configurar GitHub Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload dos arquivos do site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Se o seu HTML principal estiver direto na pasta raiz, deixe o ponto '.'
+          # Se estiver dentro de uma pasta como 'dist' ou 'build', mude para ./dist
+          path: '.'
+
+      - name: Deploy para o GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
